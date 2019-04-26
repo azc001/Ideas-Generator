@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
-const { prefix, token } = require('./config.json');
+//const { prefix, token } = require('./config.json');
 const client = new Discord.Client();
+const prefix = ".";
+const token = process.env.token;
 
 var fs = require("fs");
 var adjectives = JSON.parse(fs.readFileSync("adjectives.json"));
