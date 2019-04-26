@@ -16,9 +16,9 @@ client.once('ready', () => {
 client.on('message', message => {
   //console.log(message.content);
   client.user.setActivity('.idea | .ideas | .ping')
-  if (message.content.startsWith(`${prefix}ideas`)) message.channel.send('<@' + message.author.id + '> ' +adjectives[Math.floor(Math.random()*adjectives.length)] + " " + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + items[Math.floor(Math.random()*items.length)])
-  else if(message.content.startsWith(`${prefix}idea`)) message.channel.send('<@' + message.author.id + '> ' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + items[Math.floor(Math.random()*items.length)])
-  else if (message.content === `${prefix}ping`) message.channel.send('<@' + message.author.id + '> ' + client.ping + " ms");
+  if (message.content.startsWith(`${prefix}ideas`)) message.channel.send('<@' + message.author.id + '> | **' +adjectives[Math.floor(Math.random()*adjectives.length)] + " " + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + items[Math.floor(Math.random()*items.length )] + "**")
+  else if(message.content.startsWith(`${prefix}idea`)) message.channel.send('<@' + message.author.id + '> | **' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + items[Math.floor(Math.random()*items.length)] + "**")
+  else if (message.content === `${prefix}ping`) message.channel.send('<@' + message.author.id + '> | **' + client.ping + " ms**");
 })
 
 client.login(token);
