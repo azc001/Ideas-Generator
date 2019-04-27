@@ -17,8 +17,10 @@ client.once('ready', () => {
 client.on('message', message => {
   //console.log(message.content);
   client.user.setActivity('.item | .monster | .dungeon')
-  if (message.content.startsWith(`${prefix}monster`)) message.channel.send('<@' + message.author.id + '> | **' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)] + "**")
-  else if(message.content.startsWith(`${prefix}dungeon`)) {
+  if (message.content.startsWith(`${prefix}monster`)) {
+    if (Math.random() >= 0.5) message.channel.send('<@' + message.author.id + '> | **' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)] + "**")
+    else message.channel.send('<@' + message.author.id + '> | **The ' + monsters[Math.floor(Math.random()*monsters.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)] + "**")
+  }  else if(message.content.startsWith(`${prefix}dungeon`)) {
     if (Math.random() >= 0.5) message.channel.send('<@' + message.author.id + '> | **The ' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + dungeons[Math.floor(Math.random()*dungeons.length)] + "**")
     else {
       var tempMonster = monsters[Math.floor(Math.random()*monsters.length)]
