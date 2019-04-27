@@ -26,8 +26,10 @@ client.on('message', message => {
       else message.channel.send('<@' + message.author.id + '> | **The ' + dungeons[Math.floor(Math.random()*dungeons.length)] + " of " + tempMonster + "s**")
     }
   }
-  else if(message.content.startsWith(`${prefix}item`)) message.channel.send('<@' + message.author.id + '> | **' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + items[Math.floor(Math.random()*items.length)] + "**")
-  else if (message.content === `${prefix}ping`) message.channel.send('<@' + message.author.id + '> | **' + client.ping + " ms**");
+  else if(message.content.startsWith(`${prefix}item`)) {
+    if (Math.random() >= 0.5) message.channel.send('<@' + message.author.id + '> | ' + items[Math.floor(Math.random()*items.length)] + ' of the ' + monsters[Math.floor(Math.random()*monsters.length)] + "**")
+    else message.channel.send('<@' + message.author.id + '> | **' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + items[Math.floor(Math.random()*items.length)] + "**")
+  } else if (message.content === `${prefix}ping`) message.channel.send('<@' + message.author.id + '> | **' + client.ping + " ms**");
 })
 
 client.login(token);
