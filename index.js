@@ -32,7 +32,7 @@ client.on('message', message => {
         sentMessage.react('👍')
         			.then(() => sentMessage.react('👎'))
         const filter = (reaction, user) => {
-          return ['👍', '👎'].includes(reaction.emoji.name) && user === taggedUser.id;
+          return ['👍', '👎'].includes(reaction.emoji.name) && user.id === taggedUser.id;
         };
         
         sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
