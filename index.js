@@ -12,7 +12,7 @@ var dungeons = JSON.parse(fs.readFileSync("dungeons.json"));
 
 client.once('ready', () => {
   console.log('Ready!')
-  client.user.setActivity('.item | .monster | .dungeon')
+  client.user.setActivity('.item | .monster | .dungeon | .duel')
 })
 client.on('message', message => {
   //console.log(message.content);
