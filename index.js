@@ -18,10 +18,10 @@ client.on('message', message => {
   //console.log(message.content);
   //if (message.content.startsWith(`${prefix}monster`)) {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
-
   const args = message.content.slice(prefix.length).split(' ');
   const command = args.shift().toLowerCase();
   if (command === 'duel') {
+    var prompt = "";
     const authorUser = message.author;
     const taggedUser = message.mentions.users.first();
     if (!message.mentions.users.size || taggedUser.id === message.author.id || taggedUser.id === '571109106752946186') { 
@@ -69,13 +69,16 @@ client.on('message', message => {
                     .then(collected => {
                       const reaction = collected.first();
                       if (reaction.emoji.name === '1⃣') {
-                        message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Your prompt is ' + gen1 + '. Good luck!**');
+                        prompt = gen1;
+                        message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Your prompt is ' + prompt + '. Good luck!**');
                       }
                       else if (reaction.emoji.name === '2⃣') {
-                        message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Your prompt is ' + gen2 + '. Good luck!**');
+                        prompt = gen2;
+                        message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Your prompt is ' + prompt + '. Good luck!**');
                       }
                       else if (reaction.emoji.name === '3⃣') {
-                        message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Your prompt is ' + gen3 + '. Good luck!**');
+                        prompt = gen3;
+                        message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Your prompt is ' + prompt + '. Good luck!**');
                       }
                     })
                     .catch(collected => {
@@ -100,13 +103,16 @@ client.on('message', message => {
                     .then(collected => {
                       const reaction = collected.first();
                       if (reaction.emoji.name === '1⃣') {
-                        message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Your prompt is ' + gen1 + '. Good luck!**');
+                        prompt = gen1;
+                        message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Your prompt is ' + prompt + '. Good luck!**');
                       }
                       else if (reaction.emoji.name === '2⃣') {
-                        message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Your prompt is ' + gen2 + '. Good luck!**');
+                        prompt = gen2;
+                        message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Your prompt is ' + prompt + '. Good luck!**');
                       }
                       else if (reaction.emoji.name === '3⃣') {
-                        message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Your prompt is ' + gen3 + '. Good luck!**');
+                        prompt = gen3;
+                        message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Your prompt is ' + prompt + '. Good luck!**');
                       }
                     })
                     .catch(collected => {
