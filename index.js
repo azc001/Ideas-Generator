@@ -12,7 +12,6 @@ var dungeons = JSON.parse(fs.readFileSync("dungeons.json"));
 
 client.once('ready', () => {
   console.log('Ready!')
-  client.user.setActivity('<activity>', { type: 'HELP:' });
   client.user.setActivity('.item | .monster | .dungeon')
 })
 client.on('message', message => {
@@ -25,7 +24,7 @@ client.on('message', message => {
   if (command === 'duel') {
     const taggedUser = message.mentions.users.first();
     if (!message.mentions.users.size) {
-      return message.send('<@' + message.author.id + '> | **You need to tag a user in order to duel them!**');
+      return message.channel.send('<@' + message.author.id + '> | **You need to tag a user in order to duel them!**');
     }
     else {
       message.channel.send('<@' + taggedUser.id + '> | **Do you accept the duel from ' + message.author.username + '?**').then(sentMessage => {
@@ -38,14 +37,14 @@ client.on('message', message => {
           const reaction = collected.first();
       
           if (reaction.emoji.name === '👍') {
-            message.send('h');
+            message.channel.send('h');
           } else if (reaction.emoji.name === '👎') {
-            message.send(taggedUser.username + 'declined the challenge.');
+            message.channel.send(taggedUser.username + 'declined the challenge.');
             return;
           }
         })
         .catch(collected => {
-          message.reply('Timed out.');
+          message.channel.send('Timed out.');
         });
       });
     }
