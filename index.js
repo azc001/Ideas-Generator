@@ -23,11 +23,13 @@ client.on('message', message => {
   const command = args.shift().toLowerCase();
   if (command === 'duel') {
     const taggedUser = message.mentions.users.first();
-    if (!message.mentions.users.size || taggedUser.id === message.author.id) {
+    if (!message.mentions.users.size) { //|| taggedUser.id === message.author.id) {
       return message.channel.send('<@' + message.author.id + '> | **You need to tag a user in order to duel them!**');
     }
     else {
       message.channel.send('<@' + taggedUser.id + '> | **Do you accept the duel from ' + message.author.username + '?**').then(sentMessage => {
+        message.react('👍')
+        			.then(() => message.react('👎'))
         const filter = (reaction, user) => {
           return ['👍', '👎'].includes(reaction.emoji.name) && user.id === taggedUser.id;
         };
