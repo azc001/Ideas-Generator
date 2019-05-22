@@ -24,7 +24,7 @@ client.on('message', message => {
   if (command === 'duel') {
     const authorUser = message.author;
     const taggedUser = message.mentions.users.first();
-    if (!message.mentions.users.size) { //|| taggedUser.id === authorUser.id, '571109106752946186') { y
+    if (!message.mentions.users.size) { //|| taggedUser.id === authorUser.id, '571109106752946186') { 
       return message.channel.send('<@' + authorUser.id + '> | **You need to tag a user in order to duel them!**');
     }
     else {
