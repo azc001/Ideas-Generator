@@ -12,7 +12,7 @@ var dungeons = JSON.parse(fs.readFileSync("dungeons.json"));
 
 client.once('ready', () => {
   console.log('Ready!')
-  client.user.setActivity('.item | .monster | .dungeon | .duel')
+  client.user.setActivity('.help')
 })
 client.on('message', message => {
   //console.log(message.content);
@@ -150,7 +150,7 @@ client.on('message', message => {
   else if(command === 'dungeon') {
     if (Math.random() >= 0.5) message.channel.send('<@' + message.author.id + '> | **' + items[Math.floor(Math.random()*items.length)] + ' of the ' + monsters[Math.floor(Math.random()*monsters.length)] + "**")
     else message.channel.send('<@' + message.author.id + '> | **' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + items[Math.floor(Math.random()*items.length)] + "**")
-  } else if (command === 'help') message.channel.send("Ideas Generator, a utility RotMG bot made by `@Piggby#9767`." + '\n' + '\n' + "**Commands**" + '\n' + '*.item* - Generates an item idea using 2 formulas: <[modifier][item]> and <[modifier][item]>' + '\n' + '*.monster* - Generates a monster idea using 2 formulas: <[modifier][monster]> and <The [monster][monster]>' + '\n' + '.dungeon - Generates an dungeon idea using 2 formulas: <The [modifier][place]> and <[place] of [monster]s>' + '\n' + '*.duel [@opponent]* - Generates three item or monster ideas for the two participants to create.' + '\n' + '\n' + '**Vocabulary Lists**' + '\n' + '*Modifiers*: <https://pastebin.com/egBJifQE>' + '\n' + '*Monsters*: <https://pastebin.com/gSnFq85B>' + '\n' + '*Dungeons*: <https://pastebin.com/FeFUmQWt>');
+  } else if (command === 'help') message.channel.send("Ideas Generator, a utility RotMG bot made by `@Piggby#9767`." + '\n' + '\n' + "**Commands**" + '\n' + '*.item* - Generates an item idea using 2 formulas: <[modifier][item]> and <[modifier][item]>' + '\n' + '*.monster* - Generates a monster idea using 2 formulas: <[modifier][monster]> and <The [monster][monster]>' + '\n' + '.dungeon - Generates an dungeon idea using 2 formulas: <The [modifier][place]> and <[place] of [monster]s>' + '\n' + '*.duel [@opponent]* - Generates three item or monster ideas for the two participants to create.' + '\n' + '*.ping* - returns the ping of the client' + '\n' + '\n' + '**Vocabulary Lists**' + '\n' + '*Modifiers*: <https://pastebin.com/egBJifQE>' + '\n' + '*Monsters*: <https://pastebin.com/gSnFq85B>' + '\n' + '*Dungeons*: <https://pastebin.com/FeFUmQWt>');
    else if (command === 'ping') message.channel.send('<@' + message.author.id + '> | **' + client.ping + " ms**");
 })
 
