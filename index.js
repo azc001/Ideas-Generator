@@ -66,7 +66,7 @@ client.on('message', message => {
                       const filter = (reaction, user) => {
                         return ['1⃣', '2⃣', '3⃣'].includes(reaction.emoji.name) && (user.id === taggedUser.id || user.id === authorUser.id);
                       };
-                      await sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+                      sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
                       .then(collected => {
                         const reaction = collected.first();
                         if (reaction.emoji.name === '1⃣') {
@@ -98,7 +98,7 @@ client.on('message', message => {
                       const filter = (reaction, user) => {
                         return ['1⃣', '2⃣', '3⃣'].includes(reaction.emoji.name) && (user.id === taggedUser.id || user.id === authorUser.id);
                       };
-                      await sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+                      sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
                       .then(collected => {
                         const reaction = collected.first();
                         if (reaction.emoji.name === '1⃣') {
