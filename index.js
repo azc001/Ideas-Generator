@@ -52,7 +52,7 @@ client.on('message', message => {
               .then(collected => {
                 const reaction = collected.first();
                 if (reaction.emoji.name === '🗡') {
-                  /* do {
+                  // do {
                     if (Math.random() >= 0.5) var gen1 = items[Math.floor(Math.random()*items.length)] + " of the " + monsters[Math.floor(Math.random()*monsters.length)];
                     else var gen1 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + items[Math.floor(Math.random()*items.length)];
                     if (Math.random() >= 0.5) var gen2 = items[Math.floor(Math.random()*items.length)] + " of the " + monsters[Math.floor(Math.random()*monsters.length)];
@@ -84,12 +84,11 @@ client.on('message', message => {
                         message.channel.send('Timed out.');
                       });
                   });
-                }
-                while (prompt === '🔄')
-                message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | ** Your prompt is ' + prompt + '. Good luck!**'); */
-                message.channel.send('item');
+               // }
+               // while (prompt === '🔄')
+                message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | ** Your prompt is ' + prompt + '. Good luck!**'); 
                 }  else if (reaction.emoji.name === '👹') {
-                  /*do {
+                //  do {
                     if (Math.random() >= 0.5) var gen1 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)];
                     else var gen1 =  "The " + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + dungeons[Math.floor(Math.random()*dungeons.length)];
                     if (Math.random() >= 0.5) var gen2 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)];
@@ -121,10 +120,9 @@ client.on('message', message => {
                         message.channel.send('Timed out.');
                       });
                   });
-                }
-                while (prompt === '🔄')
-                message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | ** Your prompt is ' + prompt + '. Good luck!**'); */
-                message.channel.send('monster');
+              //  }
+             //   while (prompt === '🔄')
+                message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | ** Your prompt is ' + prompt + '. Good luck!**'); 
                 }
               })
               .catch(collected => {
