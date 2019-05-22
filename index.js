@@ -39,14 +39,14 @@ client.on('message', message => {
           const reaction = collected.first();
       
           if (reaction.emoji.name === '👍') {
-            message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + message.author.id + '> | **Would you like to draw an item or a monster?**').then(sentMessage => {
-              sentMessage.react('🗡️')
-                    .then(() => sentMessage.react('👹'))
+            message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + message.author.id + '> | **Would you like to draw an item or a monster?**').then(sentMessage2 => {
+              sentMessage2.react('🗡️')
+                    .then(() => sentMessage2.react('👹'))
               const filter = (reaction, user) => {
                 return ['🗡️', '👹'].includes(reaction.emoji.name) && user.id === taggedUser.id, message.author.id;
               };
               
-              sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+              sentMessage2.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
               .then(collected => {
                 const reaction = collected.first();
             
