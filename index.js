@@ -23,7 +23,7 @@ client.on('message', message => {
   const command = args.shift().toLowerCase();
   if (command === 'duel') {
     const taggedUser = message.mentions.users.first();
-    if (!message.mentions.users.size) { //|| taggedUser.id === message.author.id) {
+    if (!message.mentions.users.size) { //|| taggedUser.id === message.author.id, '571109106752946186') {
       return message.channel.send('<@' + message.author.id + '> | **You need to tag a user in order to duel them!**');
     }
     else {
@@ -39,7 +39,27 @@ client.on('message', message => {
           const reaction = collected.first();
       
           if (reaction.emoji.name === '👍') {
-            message.channel.send('success');
+            message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + message.author.id + '> | **Would you like to draw an item or a monster?**').then(sentMessage => {
+              sentMessage.react('🗡️')
+                    .then(() => sentMessage.react('👹'))
+              const filter = (reaction, user) => {
+                return ['🗡️', '👹'].includes(reaction.emoji.name) && user.id === taggedUser.id, message.author.id;
+              };
+              
+              sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+              .then(collected => {
+                const reaction = collected.first();
+            
+                if (reaction.emoji.name === '🗡️') {
+                  message.channel.send('item and yeah');
+                } else if (reaction.emoji.name === '👹') {
+                  message.channel.send('monster and yeah');
+                }
+              })
+              .catch(collected => {
+                message.channel.send('Timed out.');
+              });
+            });
           } else if (reaction.emoji.name === '👎') {
             message.channel.send(taggedUser.username + ' declined the challenge.');
             return;
