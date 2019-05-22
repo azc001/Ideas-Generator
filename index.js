@@ -85,6 +85,7 @@ client.on('message', message => {
                       });
                   });
                 }
+                message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | ** Your prompt is ' + prompt + '. Good luck!**');
                 }  else if (reaction.emoji.name === '👹') {
                   while (prompt === '🔄') {
                     if (Math.random() >= 0.5) var gen1 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)];
@@ -119,13 +120,13 @@ client.on('message', message => {
                       });
                   });
                 }
+                message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | ** Your prompt is ' + prompt + '. Good luck!**');
                 }
               })
               .catch(collected => {
                 message.channel.send('Timed out.');
               });
             });
-            message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | ** Your prompt is' + prompt + '. Good luck!**')
           } else if (reaction.emoji.name === '👎') {
             message.channel.send(taggedUser.username + ' declined the challenge.');
             return;
