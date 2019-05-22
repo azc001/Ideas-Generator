@@ -22,7 +22,7 @@ client.on('message', message => {
   const args = message.content.slice(prefix.length).split(' ');
   const command = args.shift().toLowerCase();
   if (command === 'duel') {
-    const prompt = '🔄';
+    var prompt = '🔄';
     const authorUser = message.author;
     const taggedUser = message.mentions.users.first();
     if (!message.mentions.users.size) { //|| user.id === taggedUser.id || user.id === '571109106752946186') { 
@@ -79,13 +79,13 @@ client.on('message', message => {
                         else if (reaction.emoji.name === '3⃣') {
                           prompt = gen3;
                         }
+                        message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | ** Your prompt is ' + prompt + '. Good luck!**');
                       })
                       .catch(collected => {
                         message.channel.send('Timed out.');
                       });
                   });
                 }
-                message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | ** Your prompt is ' + prompt + '. Good luck!**');
                 }  else if (reaction.emoji.name === '👹') {
                   while (prompt === '🔄') {
                     if (Math.random() >= 0.5) var gen1 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)];
@@ -114,13 +114,13 @@ client.on('message', message => {
                         else if (reaction.emoji.name === '3⃣') {
                           prompt = gen3;
                         }
+                        message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | ** Your prompt is ' + prompt + '. Good luck!**');
                       })
                       .catch(collected => {
                         message.channel.send('Timed out.');
                       });
                   });
                 }
-                message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | ** Your prompt is ' + prompt + '. Good luck!**');
                 }
               })
               .catch(collected => {
