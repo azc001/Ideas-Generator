@@ -22,12 +22,13 @@ client.on('message', message => {
   const args = message.content.slice(prefix.length).split(' ');
   const command = args.shift().toLowerCase();
   if (command === 'duel') {
+    const authorUser = message.author;
     const taggedUser = message.mentions.users.first();
-    if (!message.mentions.users.size) { //|| taggedUser.id === message.author.id, '571109106752946186') {
-      return message.channel.send('<@' + message.author.id + '> | **You need to tag a user in order to duel them!**');
+    if (!message.mentions.users.size) { //|| taggedUser.id === authorUser.id, '571109106752946186') {
+      return message.channel.send('<@' + authorUser.id + '> | **You need to tag a user in order to duel them!**');
     }
     else {
-      message.channel.send('<@' + taggedUser.id + '> | **Do you accept the duel from ' + message.author.username + '?**').then(sentMessage => {
+      message.channel.send('<@' + taggedUser.id + '> | **Do you accept the duel from ' + authorUser.username + '?**').then(sentMessage => {
         sentMessage.react('👍')
         			.then(() => sentMessage.react('👎'))
         const filter = (reaction, user) => {
@@ -39,14 +40,14 @@ client.on('message', message => {
           const reaction = collected.first();
       
           if (reaction.emoji.name === '👍') {
-            message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + message.author.id + '> | **Would you like to draw an item or a monster?**').then(sentMessage2 => {
-              sentMessage2.react('🗡')
-                    .then(() => sentMessage2.react('👹'))
+            message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Would you like to draw an item or a monster?**').then(sentMessage => {
+              sentMessage.react('🗡')
+                    .then(() => sentMessage.react('👹'))
               const filter = (reaction, user) => {
-                return ['🗡', '👹'].includes(reaction.emoji.name) && user.id === taggedUser.id, message.author.id;
+                return ['🗡', '👹'].includes(reaction.emoji.name) && user.id === taggedUser.id, authorUser.id;
               };
               
-              sentMessage2.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+              sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
               .then(collected => {
                 const reaction = collected.first();
             
