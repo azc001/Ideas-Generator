@@ -62,8 +62,9 @@ client.on('message', message => {
                     sentMessage.react('1⃣')
                     .then(() => sentMessage.react('2⃣'))
                     .then(() => sentMessage.react('3⃣'))
+                    .then(() => sentMessage.react('❌'))
                     const filter = (reaction, user) => {
-                      return ['1⃣', '2⃣', '3⃣'].includes(reaction.emoji.name) && (user.id === taggedUser.id || user.id === authorUser.id);
+                      return ['1⃣', '2⃣', '3⃣', '❌'].includes(reaction.emoji.name) && (user.id === taggedUser.id || user.id === authorUser.id);
                     };
                     sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
                     .then(collected => {
@@ -79,6 +80,10 @@ client.on('message', message => {
                       else if (reaction.emoji.name === '3⃣') {
                         prompt = gen3;
                         message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Your prompt is ' + prompt + '. Good luck!**');
+                      }
+                      else if (reaction.emoji.name === '❌') {
+                        message.channel.send('The duel was canceled by ' + user.username + '.');
+                        return;
                       }
                     })
                     .catch(collected => {
