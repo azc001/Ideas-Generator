@@ -12,15 +12,49 @@ var dungeons = JSON.parse(fs.readFileSync("dungeons.json"));
 
 client.once('ready', () => {
   console.log('Ready!')
+  client.user.setActivity('<activity>', { type: 'HELP:' });
+  client.user.setActivity('.item | .monster | .dungeon')
 })
 
+if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+const args = message.content.slice(prefix.length).split(' ');
+const command = args.shift().toLowerCase();
 client.on('message', message => {
   //console.log(message.content);
-  client.user.setActivity('.item | .monster | .dungeon')
-  if (message.content.startsWith(`${prefix}monster`)) {
+  //if (message.content.startsWith(`${prefix}monster`)) {
+  if (command === 'duel') {
+    const taggedUser = message.mentions.users.first();
+    if (!message.mentions.users.size) {
+      return message.send('<@' + message.author.id + '> | **You need to tag a user in order to duel them!**');
+    }
+    else {
+      message.channel.send('<@' + taggedUser.id + '> | **Do you accept the duel from ' + message.author.username + '?**').then(sentMessage => {
+        const filter = (reaction, user) => {
+          return ['👍', '👎'].includes(reaction.emoji.name) && user.id === taggedUser.id;
+        };
+        
+        message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+        .then(collected => {
+          const reaction = collected.first();
+      
+          if (reaction.emoji.name === '👍') {
+            message.send('h');
+          } else if (reaction.emoji.name === '👎') {
+            message.send(taggedUser.username + 'declined the challenge.');
+            return;
+          }
+        })
+        .catch(collected => {
+          message.reply('Timed out.');
+        });
+      });
+    }
+  }
+  else if (command === 'monster') {  
     if (Math.random() >= 0.5) message.channel.send('<@' + message.author.id + '> | **' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)] + "**")
     else message.channel.send('<@' + message.author.id + '> | **The ' + monsters[Math.floor(Math.random()*monsters.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)] + "**")
-  }  else if(message.content.startsWith(`${prefix}dungeon`)) {
+  }  else if(command === 'dungeon') {
     if (Math.random() >= 0.5) message.channel.send('<@' + message.author.id + '> | **The ' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + dungeons[Math.floor(Math.random()*dungeons.length)] + "**")
     else {
       var tempMonster = monsters[Math.floor(Math.random()*monsters.length)]
@@ -28,7 +62,7 @@ client.on('message', message => {
       else message.channel.send('<@' + message.author.id + '> | **The ' + dungeons[Math.floor(Math.random()*dungeons.length)] + " of " + tempMonster + "s**")
     }
   }
-  else if(message.content.startsWith(`${prefix}item`)) {
+  else if(command === 'dungeon') {
     if (Math.random() >= 0.5) message.channel.send('<@' + message.author.id + '> | **' + items[Math.floor(Math.random()*items.length)] + ' of the ' + monsters[Math.floor(Math.random()*monsters.length)] + "**")
     else message.channel.send('<@' + message.author.id + '> | **' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + items[Math.floor(Math.random()*items.length)] + "**")
   } else if (message.content === `${prefix}ping`) message.channel.send('<@' + message.author.id + '> | **' + client.ping + " ms**");
