@@ -22,9 +22,10 @@ client.on('message', message => {
   const args = message.content.slice(prefix.length).split(' ');
   const command = args.shift().toLowerCase();
   if (command === 'duel') {
+    const prompt = '🔄';
     const authorUser = message.author;
     const taggedUser = message.mentions.users.first();
-    if (!message.mentions.users.size) { //|| taggedUser.id === authorUser.id, '571109106752946186') { 
+    if (!message.mentions.users.size) { //|| user.id === taggedUser.id || user.id === '571109106752946186') { 
       return message.channel.send('<@' + authorUser.id + '> | **You need to tag a user in order to duel them!**');
     }
     else {
@@ -50,17 +51,81 @@ client.on('message', message => {
               sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
               .then(collected => {
                 const reaction = collected.first();
-            
                 if (reaction.emoji.name === '🗡') {
-                  message.channel.send('item and yeah');
-                } else if (reaction.emoji.name === '👹') {
-                  message.channel.send('monster and yeah');
+                  while (prompt === '🔄') {
+                    if (Math.random() >= 0.5) const gen1 = items[Math.floor(Math.random()*items.length)] + ' of the ' + monsters[Math.floor(Math.random()*monsters.length)];
+                    else const gen1 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + items[Math.floor(Math.random()*items.length)];
+                    if (Math.random() >= 0.5) const gen2 = items[Math.floor(Math.random()*items.length)] + ' of the ' + monsters[Math.floor(Math.random()*monsters.length)];
+                    else const gen2 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + items[Math.floor(Math.random()*items.length)];
+                    if (Math.random() >= 0.5) const gen3 = items[Math.floor(Math.random()*items.length)] + ' of the ' + monsters[Math.floor(Math.random()*monsters.length)];
+                    else const gen3 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + items[Math.floor(Math.random()*items.length)];
+                    message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Choose one of the prompts from the following ideas.**' + '\n' + ':one:  **' + gen1 + '**' + '\n' + ':two:  **' + gen2 + '**' + '\n' + ':three:  **' + gen3 + '**').then(sentMessage => {
+                      sentMessage.react('1⃣')
+                      .then(() => sentMessage.react('2⃣'))
+                      .then(() => sentMessage.react('3⃣'))
+                      .then(() => sentMessage.react('🔄'))
+                      const filter = (reaction, user) => {
+                        return ['1⃣', '2⃣', '3⃣', '🔄'].includes(reaction.emoji.name) && (user.id === taggedUser.id || user.id === authorUser.id);
+                      };
+                      sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+                      .then(collected => {
+                        const reaction = collected.first();
+                        if (reaction.emoji.name === '1⃣') {
+                          prompt = gen1;
+                        }
+                        else if (reaction.emoji.name === '2⃣') {
+                          prompt = gen2;
+                        }
+                        else if (reaction.emoji.name === '3⃣') {
+                          prompt = gen3;
+                        }
+                      })
+                      .catch(collected => {
+                        message.channel.send('Timed out.');
+                      });
+                  });
+                }
+                }  else if (reaction.emoji.name === '👹') {
+                  while (prompt === '🔄') {
+                    if (Math.random() >= 0.5) const gen1 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)];
+                    else gen1 =  'The ' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + dungeons[Math.floor(Math.random()*dungeons.length)];
+                    if (Math.random() >= 0.5) const gen2 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)];
+                    else gen2 =  'The ' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + dungeons[Math.floor(Math.random()*dungeons.length)];
+                    if (Math.random() >= 0.5) const gen3 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)];
+                    else gen3 =  'The ' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + dungeons[Math.floor(Math.random()*dungeons.length)];
+                    message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Choose one of the prompts from the following ideas.**' + '\n' + ':one:  **' + gen1 + '**' + '\n' + ':two:  **' + gen2 + '**' + '\n' + ':three:  **' + gen3 + '**').then(sentMessage => {
+                      sentMessage.react('1⃣')
+                      .then(() => sentMessage.react('2⃣'))
+                      .then(() => sentMessage.react('3⃣'))
+                      .then(() => sentMessage.react('🔄'))
+                      const filter = (reaction, user) => {
+                        return ['1⃣', '2⃣', '3⃣', '🔄'].includes(reaction.emoji.name) && (user.id === taggedUser.id || user.id === authorUser.id);
+                      };
+                      sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+                      .then(collected => {
+                        const reaction = collected.first();
+                        if (reaction.emoji.name === '1⃣') {
+                          prompt = gen1;
+                        }
+                        else if (reaction.emoji.name === '2⃣') {
+                          prompt = gen2;
+                        }
+                        else if (reaction.emoji.name === '3⃣') {
+                          prompt = gen3;
+                        }
+                      })
+                      .catch(collected => {
+                        message.channel.send('Timed out.');
+                      });
+                  });
+                }
                 }
               })
               .catch(collected => {
                 message.channel.send('Timed out.');
               });
             });
+            message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | ** Your prompt is' + prompt + '. Good luck!**')
           } else if (reaction.emoji.name === '👎') {
             message.channel.send(taggedUser.username + ' declined the challenge.');
             return;
