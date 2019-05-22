@@ -28,8 +28,8 @@ client.on('message', message => {
     }
     else {
       message.channel.send('<@' + taggedUser.id + '> | **Do you accept the duel from ' + message.author.username + '?**').then(sentMessage => {
-        message.channel.react('👍')
-        			.then(() => message.channel.react('👎'))
+        sentMessage.react('👍')
+        			.then(() => sentMessage.react('👎'))
         const filter = (reaction, user) => {
           return ['👍', '👎'].includes(reaction.emoji.name) && user.id === taggedUser.id;
         };
@@ -39,7 +39,7 @@ client.on('message', message => {
           const reaction = collected.first();
       
           if (reaction.emoji.name === '👍') {
-            message.channel.send('h');
+            message.channel.send('success');
           } else if (reaction.emoji.name === '👎') {
             message.channel.send(taggedUser.username + ' declined the challenge.');
             return;
