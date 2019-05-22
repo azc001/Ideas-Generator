@@ -82,7 +82,7 @@ client.on('message', message => {
                         message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Your prompt is ' + prompt + '. Good luck!**');
                       }
                       else if (reaction.emoji.name === '❌') {
-                        message.channel.send('The duel was canceled by ' + user.username + '.');
+                        message.channel.send('The duel was canceled by ' + user.username + '.')
                         return;
                       }
                     })
@@ -92,11 +92,11 @@ client.on('message', message => {
                   });
           }  else if (reaction.emoji.name === '👹') {
                   if (Math.random() >= 0.5) var gen1 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)];
-                  else var gen1 =  'The ' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + dungeons[Math.floor(Math.random()*dungeons.length)];
+                  else var gen1 = 'The ' + monsters[Math.floor(Math.random()*monsters.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)];
                   if (Math.random() >= 0.5) var gen2 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)];
-                  else var gen2 =  'The ' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + dungeons[Math.floor(Math.random()*dungeons.length)];
+                  else var gen2 = 'The ' + monsters[Math.floor(Math.random()*monsters.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)];
                   if (Math.random() >= 0.5) var gen3 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)];
-                  else var gen3 =  'The ' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + dungeons[Math.floor(Math.random()*dungeons.length)];
+                  else var gen3 = 'The ' + monsters[Math.floor(Math.random()*monsters.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)];
                   message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Choose one of the prompts from the following ideas.**' + '\n' + ':one:  **' + gen1 + '**' + '\n' + ':two:  **' + gen2 + '**' + '\n' + ':three:  **' + gen3 + '**').then(sentMessage => {
                     sentMessage.react('1⃣')
                     .then(() => sentMessage.react('2⃣'))
@@ -121,7 +121,7 @@ client.on('message', message => {
                         message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Your prompt is ' + prompt + '. Good luck!**');
                       }
                       else if (reaction.emoji.name === '❌') {
-                        message.channel.send('The duel was canceled by ' + user.username + '.');
+                        message.channel.send('The duel was canceled by ' + user.username + '.')
                         return;
                       }
                     })
