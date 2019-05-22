@@ -15,14 +15,13 @@ client.once('ready', () => {
   client.user.setActivity('<activity>', { type: 'HELP:' });
   client.user.setActivity('.item | .monster | .dungeon')
 })
-
-if (!message.content.startsWith(prefix) || message.author.bot) return;
-
-const args = message.content.slice(prefix.length).split(' ');
-const command = args.shift().toLowerCase();
 client.on('message', message => {
   //console.log(message.content);
   //if (message.content.startsWith(`${prefix}monster`)) {
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+  const args = message.content.slice(prefix.length).split(' ');
+  const command = args.shift().toLowerCase();
   if (command === 'duel') {
     const taggedUser = message.mentions.users.first();
     if (!message.mentions.users.size) {
