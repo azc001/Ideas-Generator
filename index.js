@@ -53,11 +53,11 @@ client.on('message', message => {
                 const reaction = collected.first();
                 if (reaction.emoji.name === '🗡') {
                   while (prompt === '🔄') {
-                    if (Math.random() >= 0.5) const gen1 = items[Math.floor(Math.random()*items.length)] + ' of the ' + monsters[Math.floor(Math.random()*monsters.length)];
+                    if (Math.random() >= 0.5) const gen1 = items[Math.floor(Math.random()*items.length)] + " of the " + monsters[Math.floor(Math.random()*monsters.length)];
                     else const gen1 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + items[Math.floor(Math.random()*items.length)];
-                    if (Math.random() >= 0.5) const gen2 = items[Math.floor(Math.random()*items.length)] + ' of the ' + monsters[Math.floor(Math.random()*monsters.length)];
+                    if (Math.random() >= 0.5) const gen2 = items[Math.floor(Math.random()*items.length)] + " of the " + monsters[Math.floor(Math.random()*monsters.length)];
                     else const gen2 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + items[Math.floor(Math.random()*items.length)];
-                    if (Math.random() >= 0.5) const gen3 = items[Math.floor(Math.random()*items.length)] + ' of the ' + monsters[Math.floor(Math.random()*monsters.length)];
+                    if (Math.random() >= 0.5) const gen3 = items[Math.floor(Math.random()*items.length)] + " of the " + monsters[Math.floor(Math.random()*monsters.length)];
                     else const gen3 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + items[Math.floor(Math.random()*items.length)];
                     message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Choose one of the prompts from the following ideas.**' + '\n' + ':one:  **' + gen1 + '**' + '\n' + ':two:  **' + gen2 + '**' + '\n' + ':three:  **' + gen3 + '**').then(sentMessage => {
                       sentMessage.react('1⃣')
@@ -88,11 +88,11 @@ client.on('message', message => {
                 }  else if (reaction.emoji.name === '👹') {
                   while (prompt === '🔄') {
                     if (Math.random() >= 0.5) const gen1 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)];
-                    else gen1 =  'The ' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + dungeons[Math.floor(Math.random()*dungeons.length)];
+                    else gen1 =  "The " + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + dungeons[Math.floor(Math.random()*dungeons.length)];
                     if (Math.random() >= 0.5) const gen2 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)];
-                    else gen2 =  'The ' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + dungeons[Math.floor(Math.random()*dungeons.length)];
+                    else gen2 =  "The " + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + dungeons[Math.floor(Math.random()*dungeons.length)];
                     if (Math.random() >= 0.5) const gen3 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)];
-                    else gen3 =  'The ' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + dungeons[Math.floor(Math.random()*dungeons.length)];
+                    else gen3 =  "The " + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + dungeons[Math.floor(Math.random()*dungeons.length)];
                     message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | **Choose one of the prompts from the following ideas.**' + '\n' + ':one:  **' + gen1 + '**' + '\n' + ':two:  **' + gen2 + '**' + '\n' + ':three:  **' + gen3 + '**').then(sentMessage => {
                       sentMessage.react('1⃣')
                       .then(() => sentMessage.react('2⃣'))
