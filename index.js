@@ -79,7 +79,6 @@ client.on('message', message => {
                         else if (reaction.emoji.name === '3⃣') {
                           prompt = gen3;
                         }
-                        message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | ** Your prompt is ' + prompt + '. Good luck!**');
                       })
                       .catch(collected => {
                         message.channel.send('Timed out.');
@@ -87,6 +86,7 @@ client.on('message', message => {
                   });
                 }
                 while (prompt === '🔄')
+                message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | ** Your prompt is ' + prompt + '. Good luck!**');
                 }  else if (reaction.emoji.name === '👹') {
                   do {
                     if (Math.random() >= 0.5) var gen1 = adjectives[Math.floor(Math.random()*adjectives.length)] + " " + monsters[Math.floor(Math.random()*monsters.length)];
@@ -115,7 +115,6 @@ client.on('message', message => {
                         else if (reaction.emoji.name === '3⃣') {
                           prompt = gen3;
                         }
-                        message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | ** Your prompt is ' + prompt + '. Good luck!**');
                       })
                       .catch(collected => {
                         message.channel.send('Timed out.');
@@ -123,6 +122,7 @@ client.on('message', message => {
                   });
                 }
                 while (prompt === '🔄')
+                message.channel.send('<@' + taggedUser.id + '>, ' + '<@' + authorUser.id + '> | ** Your prompt is ' + prompt + '. Good luck!**');
                 }
               })
               .catch(collected => {
