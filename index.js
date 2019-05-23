@@ -105,7 +105,7 @@ client.on('message', message => {
                     const filter = (reaction, user) => {
                       return ['1⃣', '2⃣', '3⃣', '❌'].includes(reaction.emoji.name) && (user.id === taggedUser.id || user.id === authorUser.id);
                     };
-                    sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+                    sentMessage.awaitReactions(filter, { max: 1, time: 120000, errors: ['time'] })
                     .then(collected => {
                       const reaction = collected.first();
                       if (reaction.emoji.name === '1⃣') {
@@ -153,8 +153,8 @@ client.on('message', message => {
     if (Math.random() >= 0.5) message.channel.send('<@' + message.author.id + '> | **The ' + adjectives[Math.floor(Math.random()*adjectives.length)] + " " + dungeons[Math.floor(Math.random()*dungeons.length)] + "**")
     else {
       var tempMonster = monsters[Math.floor(Math.random()*monsters.length)]
-      if (tempMonster[tempMonster.length - 1] == 's') message.channel.send('<@' + message.author.id + '> | **The ' + dungeons[Math.floor(Math.random()*dungeons.length)] + " of " + tempMonster + "es**")
-      else message.channel.send('<@' + message.author.id + '> | **The ' + dungeons[Math.floor(Math.random()*dungeons.length)] + " of " + tempMonster + "s**")
+      if (tempMonster[tempMonster.length - 1] == 's') message.channel.send('<@' + message.author.id + '> | **' + dungeons[Math.floor(Math.random()*dungeons.length)] + " of " + tempMonster + "es**")
+      else message.channel.send('<@' + message.author.id + '> | **' + dungeons[Math.floor(Math.random()*dungeons.length)] + " of " + tempMonster + "s**")
     }
   }
   else if(command === 'item') {
