@@ -17,7 +17,17 @@ client.once('ready', () => {
 client.on('message', message => {
   //console.log(message.content);
   //if (message.content.startsWith(`${prefix}monster`)) {
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
+  if (message.channel.id == '520457693979213833') {
+    if (message.attachments.size > 0 || message.embeds.length > 0) {
+      message.react('539111244842532874')
+        .then(() => message.react('539111244414844929'));
+    }
+    else {
+      message.delete()
+        .then(message.author.send('Please only post images in the `#sprites` channel. To talk about your sprite, head to `#feedback`. Thanks!'));
+    }
+  }
+  else if (!message.content.startsWith(prefix) || message.author.bot) return;
   const args = message.content.slice(prefix.length).split(' ');
   const command = args.shift().toLowerCase();
   if (command === 'duel') {
