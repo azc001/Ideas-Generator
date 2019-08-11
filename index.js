@@ -24,7 +24,7 @@ client.on('message', message => {
     }
     else {
       message.delete()
-        .then(message.author.send('Please only post images in the `#sprites` channel. To talk about your sprite, head to `#feedback`. Thanks!'));
+        .then(message.author.send('Please only post images in the <#520457693979213833> channel. To talk about your sprite, head to <#309107410654724096>. Thanks!'));
     }
   }
   else if (!message.content.startsWith(prefix) || message.author.bot) return;
