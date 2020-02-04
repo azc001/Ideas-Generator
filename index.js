@@ -19,8 +19,8 @@ client.on('message', message => {
   //if (message.content.startsWith(`${prefix}monster`)) {
   if (message.channel.id == '520457693979213833') {
     if (message.attachments.size > 0 || message.embeds.length > 0) {
-      message.react('539111244842532874')
-        .then(() => message.react('539111244414844929'));
+      message.react('539111244842532874');
+        //.then(() => message.react('539111244414844929')); downvote
     }
     else {
       message.delete()
