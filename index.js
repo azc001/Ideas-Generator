@@ -24,7 +24,7 @@ client.on('message', message => {
     }
     else {
       message.delete()
-        .then(message.author.send('Please only post images in the <#520457693979213833> channel. To talk about your sprite, head to <#309107410654724096>. Thanks!'));
+        .then(message.author.send('Please only post images or embedded links in the <#520457693979213833> channel. To talk about your sprite, head to <#309107410654724096>. Thanks!'));
     }
   }
   else if (message.channel.id == '742157612879183993') {
@@ -33,7 +33,7 @@ client.on('message', message => {
     }
     else {
       message.delete()
-        .then(message.author.send('Please only post images in the <#742161471508840478> channel. Thanks!'));
+        .then(message.author.send('Please only post images or embedded links in the <#742157612879183993> channel. Thanks!'));
     }
   }
   else if (!message.content.startsWith(prefix) || message.author.bot) return;
