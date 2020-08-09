@@ -29,7 +29,7 @@ client.on('message', message => {
   }
   else if (message.channel.id == '742157612879183993') {
     if (message.attachments.size > 0 || message.embeds.length > 0) {
-      message.react('742166564715102311');
+      message.react('742160530353160192');
     }
     else {
       message.delete()
