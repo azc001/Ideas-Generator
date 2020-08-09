@@ -27,6 +27,15 @@ client.on('message', message => {
         .then(message.author.send('Please only post images in the <#520457693979213833> channel. To talk about your sprite, head to <#309107410654724096>. Thanks!'));
     }
   }
+  else if (message.channel.id == '742157612879183993') {
+    if (message.attachments.size > 0 || message.embeds.length > 0) {
+      message.react('742161464453890109');
+    }
+    else {
+      message.delete()
+        .then(message.author.send('Please only post images in the <#742161471508840478> channel. Thanks!'));
+    }
+  }
   else if (!message.content.startsWith(prefix) || message.author.bot) return;
   const args = message.content.slice(prefix.length).split(' ');
   const command = args.shift().toLowerCase();
